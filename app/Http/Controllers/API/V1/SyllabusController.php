@@ -15,6 +15,7 @@ use App\Traits\HasHttpResponse;
 class SyllabusController extends Controller
 {
     use HasHttpResponse;
+
     protected SyllabusService $service;
 
     public function __construct(SyllabusService $service)
