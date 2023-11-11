@@ -58,6 +58,6 @@ class ClassroomController extends Controller
     public function delete(Classroom $classroom)// Удаление класса
     {
         $classroom->delete();
-        return $this->successWithoutData();
+        return $this->successWithoutContent();
     }
 }

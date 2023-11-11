@@ -22,8 +22,8 @@ trait HasHttpResponse
         ], $status);
     }
 
-    protected function successWithoutData(int $status = Response::HTTP_NO_CONTENT):\Illuminate\Http\Response
+    protected function successWithoutContent():\Illuminate\Http\Response
     {
-        return response( null, $status);
+        return response()->noContent();
     }
 }

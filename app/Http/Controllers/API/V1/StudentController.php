@@ -57,7 +57,7 @@ class StudentController extends Controller
     public function delete(Student $student) // Удаление студента
     {
         $student->delete();
-        return $this->successWithoutData();
+        return $this->successWithoutContent();
     }
 
 }

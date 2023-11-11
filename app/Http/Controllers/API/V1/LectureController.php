@@ -55,6 +55,6 @@ class LectureController extends Controller
     public function delete(Lecture $lecture) // Удаление лекции
     {
         $lecture->delete();
-        return $this->successWithoutData();
+        return $this->successWithoutContent();
     }
 }
