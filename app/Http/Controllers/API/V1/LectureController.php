@@ -8,6 +8,7 @@ use App\Http\Requests\Lecture\LectureSaveRequest;
 use App\Http\Resources\LectureResource;
 use App\Models\Lecture;
 use App\Traits\HasHttpResponse;
+use Illuminate\Http\Response;
 
 class LectureController extends Controller
 {
@@ -19,8 +20,7 @@ class LectureController extends Controller
 
         return $this->success(
             message: 'Лекции',
-            data: LectureResource::collection($lectures)
-                ->resolve()
+            data: LectureResource::collection($lectures)->resolve()
         );
     }
 
@@ -28,8 +28,7 @@ class LectureController extends Controller
     {
         return $this->success(
             message: 'Лекция',
-            data: LectureResource::make($lecture)
-                ->resolve()
+            data: LectureResource::make($lecture)->resolve()
         );
     }
 
@@ -38,7 +37,8 @@ class LectureController extends Controller
         $lecture = Lecture::query()->create($request->validated());
         return $this->success(
             message: 'Лекция создана',
-            data: LectureResource::make($lecture)->resolve()
+            data: LectureResource::make($lecture)->resolve(),
+            status: Response::HTTP_CREATED
         );
     }
 

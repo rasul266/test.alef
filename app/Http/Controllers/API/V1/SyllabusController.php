@@ -10,6 +10,7 @@ use App\Models\Classroom;
 use App\Models\Lecture;
 use App\Services\SyllabusService;
 use App\Traits\HasHttpResponse;
+use Illuminate\Http\Response;
 
 
 class SyllabusController extends Controller
@@ -29,8 +30,7 @@ class SyllabusController extends Controller
 
         return $this->success(
             message: 'Учебный план для класса - ' . $classroom->name,
-            data: LectureResource::collection($syllabus)
-                ->resolve()
+            data: LectureResource::collection($syllabus)->resolve()
         );
     }
 
@@ -46,11 +46,12 @@ class SyllabusController extends Controller
             return $this->error('В учебном плане на этой позиции уже существует лекция');
         }
 
-        $classroom->lectures()->attach($lecture, ['position'=>$position]);
+        $classroom->lectures()->attach($lecture, ['position' => $position]);
 
         return $this->success(
             message: 'Учебный план для класса - ' . $classroom->name,
-            data: LectureResource::collection($classroom->lectures)->resolve()
+            data: LectureResource::collection($classroom->lectures)->resolve(),
+            status: Response::HTTP_CREATED
         );
     }
 
@@ -66,13 +67,12 @@ class SyllabusController extends Controller
             return $this->error('В учебном плане на этой позиции уже существует лекция');
         }
 
-        $classroom->lectures()->updateExistingPivot($lecture, ['position'=>$position]);
+        $classroom->lectures()->updateExistingPivot($lecture, ['position' => $position]);
 
         return $this->success(
             message: 'Учебный план обновлен для класса - ' . $classroom->name,
             data: LectureResource::collection($classroom->lectures)->resolve()
         );
     }
-
 
 }

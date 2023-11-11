@@ -8,6 +8,7 @@ use App\Http\Requests\Classroom\ClassroomSaveRequest;
 use App\Http\Resources\ClassroomResource;
 use App\Models\Classroom;
 use App\Traits\HasHttpResponse;
+use Illuminate\Http\Response;
 
 class ClassroomController extends Controller
 {
@@ -28,8 +29,7 @@ class ClassroomController extends Controller
     {
         return $this->success(
             message: 'Класс',
-            data: ClassroomResource::make($classroom)
-                ->resolve()
+            data: ClassroomResource::make($classroom)->resolve()
         );
     }
 
@@ -40,7 +40,8 @@ class ClassroomController extends Controller
 
         return $this->success(
             message: 'Класс создан',
-            data: ClassroomResource::make($classroom)->resolve()
+            data: ClassroomResource::make($classroom)->resolve(),
+            status: Response::HTTP_CREATED
         );
     }
 

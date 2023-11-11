@@ -8,6 +8,7 @@ use App\Http\Requests\Student\StudentSaveRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Traits\HasHttpResponse;
+use Illuminate\Http\Response;
 
 class StudentController extends Controller
 {
@@ -38,7 +39,8 @@ class StudentController extends Controller
         $student = Student::query()->create($request->validated());
         return $this->success(
             message: 'Студент создан',
-            data: StudentResource::make($student)->resolve()
+            data: StudentResource::make($student)->resolve(),
+            status: Response::HTTP_CREATED
         );
     }
 
