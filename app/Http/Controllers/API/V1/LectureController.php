@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\API\V1;
 
@@ -7,7 +8,6 @@ use App\Http\Requests\Lecture\LectureSaveRequest;
 use App\Http\Resources\LectureResource;
 use App\Models\Lecture;
 use App\Traits\HasHttpResponse;
-use Illuminate\Http\Request;
 
 class LectureController extends Controller
 {

@@ -1,18 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Classroom\ClassroomSaveRequest;
 use App\Http\Resources\ClassroomResource;
-use App\Http\Resources\LectureResource;
 use App\Models\Classroom;
-use App\Models\Lecture;
-use App\Models\Student;
-use App\Services\SyllabusService;
 use App\Traits\HasHttpResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ClassroomController extends Controller
 {
@@ -58,7 +53,6 @@ class ClassroomController extends Controller
             data: ClassroomResource::make($classroom)->resolve()
         );
     }
-
 
     public function delete(Classroom $classroom)// Удаление класса
     {

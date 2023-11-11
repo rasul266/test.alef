@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Students\StudentSaveRequest;
-use App\Http\Requests\Students\StudentUpdateRequest;
+use App\Http\Requests\Student\StudentSaveRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Traits\HasHttpResponse;

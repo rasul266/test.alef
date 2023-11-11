@@ -1,14 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Syllabus\SyllabusPositionRequest;
 use App\Http\Resources\LectureResource;
 use App\Models\Classroom;
 use App\Models\Lecture;
 use App\Services\SyllabusService;
 use App\Traits\HasHttpResponse;
-use Illuminate\Http\Request;
 
 
 class SyllabusController extends Controller
@@ -32,7 +33,7 @@ class SyllabusController extends Controller
         );
     }
 
-    public function addLectureToTheSyllabus(Request $request, Classroom $classroom, Lecture $lecture) //Добавление лекции в Учебный план
+    public function addLectureToTheSyllabus(SyllabusPositionRequest $request, Classroom $classroom, Lecture $lecture) //Добавление лекции в Учебный план
     {
         $position = $request->input('position');
 
@@ -52,7 +53,7 @@ class SyllabusController extends Controller
         );
     }
 
-    public function updateLectureToTheSyllabus(Request $request, Classroom $classroom, Lecture $lecture) //Обновление лекции в Учебный план
+    public function updateLectureToTheSyllabus(SyllabusPositionRequest $request, Classroom $classroom, Lecture $lecture) //Обновление лекции в Учебный план
     {
         $position = $request->input('position');
 
